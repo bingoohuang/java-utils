@@ -1,0 +1,135 @@
+{
+  "d": {
+    "results": [
+      {
+        "candidateId": "202",
+        "lastName": "胡",
+        "contactEmail": "827794655@qq.com",
+        "cellPhone": "18811448245",
+        "firstName": "经纬中",
+        "outsideWorkExperience": {
+          "results": [
+            {
+              "startDate": "/Date(1427846400000)/",
+              "employer": "北京市液压技术研究所",
+              "startTitle": "电气工程师",
+              "endDate": "/Date(253402214400000)/",
+              "businessType": "未说明"
+            },
+            {
+              "startDate": "/Date(1401580800000)/",
+              "employer": "北京科诺伟业科技股份有限公司(社会实习)",
+              "startTitle": "硬件研发工程师",
+              "endDate": "/Date(1412035200000)/",
+              "businessType": "未说明"
+            },
+            {
+              "startDate": "/Date(1383264000000)/",
+              "employer": "中国科学院计算技术研究所(社会实习)",
+              "startTitle": "软件测试工程师",
+              "endDate": "/Date(1393545600000)/",
+              "businessType": "未说明"
+            }
+          ]
+        },
+        "education": {
+          "results": [
+            {
+              "backgroundElementId": "189",
+              "custom1": null,
+              "startDate": "/Date(1346457600000)/",
+              "bgOrderPos": "0",
+              "custom3": null,
+              "custom4": "504",
+              "custom6": "653",
+              "endDate": "/Date(1427760000000)/",
+              "lastModifiedDateTime": "/Date(1522399071000+0000)/",
+              "candidateId": "202",
+              "school": "北京信息科技大学",
+              "degree": "583",
+              "StillAttending": null,
+              "major": "0/660/410620/410624"
+            },
+            {
+              "backgroundElementId": "190",
+              "custom1": null,
+              "startDate": "/Date(1220227200000)/",
+              "bgOrderPos": "0",
+              "custom3": null,
+              "custom4": "504",
+              "custom6": "652",
+              "endDate": "/Date(1341014400000)/",
+              "lastModifiedDateTime": "/Date(1522399074000+0000)/",
+              "candidateId": "202",
+              "school": "华北科技学院",
+              "degree": "580",
+              "StillAttending": null,
+              "major": "0/660/733/61432"
+            }
+          ]
+        },
+        "jobsApplied": {
+          "results": [
+            {
+              "applicationId": "202",
+              "dateOfBirth": "/Date(631152000000+0000)/",
+              "Dayeesouce": "猎聘网(集团总部)",
+              "gender": "Male",
+              "jobRequisition": {
+                "joblevelmin": null,
+                "positionNumber": "80036777",
+                "joblevelmax": null,
+                "jobReqLocale": {
+                  "results": [
+                    {
+                      "jobTitle": "Prod大易测试"
+                    }
+                  ]
+                },
+                "department_obj": null,
+                "recruiter": {
+                  "results": [
+                    {
+                      "lastName": "SF",
+                      "firstName": "Admin"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "applicationId": "52409",
+              "dateOfBirth": "/Date(631152000000+0000)/",
+              "Dayeesouce": "hanergy064",
+              "gender": "Male",
+              "jobRequisition": {
+                "joblevelmin": null,
+                "positionNumber": "20005985",
+                "joblevelmax": null,
+                "jobReqLocale": {
+                  "results": [
+                    {
+                      "jobTitle": "高级电气工程师"
+                    }
+                  ]
+                },
+                "department_obj": {
+                  "externalCode": "90006902",
+                  "description": "设计部"
+                },
+                "recruiter": {
+                  "results": [
+                    {
+                      "lastName": "裴",
+                      "firstName": "培"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

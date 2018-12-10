@@ -1,0 +1,294 @@
+{
+  "d": {
+    "results": [
+      {
+        "candidateId": "202",
+        "lastName": "胡",
+        "contactEmail": "827794655@qq.com",
+        "cellPhone": "18811448245",
+        "firstName": "经纬中",
+        "outsideWorkExperience": {
+          "results": [
+            {
+              "startDate": "\/Date(1427846400000)\/",
+              "employer": "北京市液压技术研究所",
+              "startTitle": "电气工程师",
+              "endDate": "\/Date(253402214400000)\/",
+              "businessType": "未说明"
+            },
+            {
+              "startDate": "\/Date(1401580800000)\/",
+              "employer": "北京科诺伟业科技股份有限公司(社会实习)",
+              "startTitle": "硬件研发工程师",
+              "endDate": "\/Date(1412035200000)\/",
+              "businessType": "未说明"
+            },
+            {
+              "startDate": "\/Date(1383264000000)\/",
+              "employer": "中国科学院计算技术研究所(社会实习)",
+              "startTitle": "软件测试工程师",
+              "endDate": "\/Date(1393545600000)\/",
+              "businessType": "未说明"
+            }
+          ]
+        },
+        "education": {
+          "results": [
+            {
+              "backgroundElementId": "189",
+              "custom1": null,
+              "startDate": "\/Date(1346457600000)\/",
+              "bgOrderPos": "0",
+              "custom3": null,
+              "custom4": "504",
+              "custom6": "653",
+              "endDate": "\/Date(1427760000000)\/",
+              "lastModifiedDateTime": "\/Date(1522399071000+0000)\/",
+              "candidateId": "202",
+              "school": "北京信息科技大学",
+              "degree": "583",
+              "StillAttending": null,
+              "major": "0/660/410620/410624"
+            },
+            {
+              "backgroundElementId": "190",
+              "custom1": null,
+              "startDate": "\/Date(1220227200000)\/",
+              "bgOrderPos": "0",
+              "custom3": null,
+              "custom4": "504",
+              "custom6": "652",
+              "endDate": "\/Date(1341014400000)\/",
+              "lastModifiedDateTime": "\/Date(1522399074000+0000)\/",
+              "candidateId": "202",
+              "school": "华北科技学院",
+              "degree": "580",
+              "StillAttending": null,
+              "major": "0/660/733/61432"
+            }
+          ]
+        },
+        "jobsApplied": {
+          "results": [
+            {
+              "applicationId": "202",
+              "dateOfBirth": "\/Date(631152000000+0000)\/",
+              "Dayeesouce": "猎聘网(集团总部)",
+              "gender": "Male",
+              "jobRequisition": {
+                "joblevelmin": null,
+                "positionNumber": "80036777",
+                "joblevelmax": null,
+                "jobReqLocale": {
+                  "results": [
+                    {
+                      "jobTitle": "Prod大易测试"
+                    }
+                  ]
+                },
+                "department_obj": null,
+                "recruiter": {
+                  "results": [
+                    {
+                      "lastName": "SF",
+                      "firstName": "Admin"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "applicationId": "52409",
+              "dateOfBirth": "\/Date(631152000000+0000)\/",
+              "Dayeesouce": "hanergy064",
+              "gender": "Male",
+              "jobRequisition": {
+                "joblevelmin": null,
+                "positionNumber": "20005985",
+                "joblevelmax": null,
+                "jobReqLocale": {
+                  "results": [
+                    {
+                      "jobTitle": "高级电气工程师"
+                    }
+                  ]
+                },
+                "department_obj": {
+                  "externalCode": "90006902",
+                  "description": "设计部"
+                },
+                "recruiter": {
+                  "results": [
+                    {
+                      "lastName": "裴",
+                      "firstName": "培"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__metadata": {
+          "uri": "https://api15.sapsf.cn/odata/v2/Candidate(201L)",
+          "type": "SFOData.Candidate"
+        },
+        "candidateId": "201",
+        "lastName": "周",
+        "contactEmail": "1347382158@qq.com",
+        "cellPhone": "13636558850",
+        "firstName": "丽强",
+        "outsideWorkExperience": {
+          "results": [
+            {
+              "startDate": "\/Date(1470009600000)\/",
+              "employer": "威讯联合半导体(北京)有限公司",
+              "startTitle": "设备经理",
+              "endDate": "\/Date(253402214400000)\/",
+              "businessType": "设备工程部"
+            },
+            {
+              "startDate": "\/Date(1393632000000)\/",
+              "employer": "镇江中集电科技股份有限公司",
+              "startTitle": "工程部经理",
+              "endDate": "\/Date(1467244800000)\/",
+              "businessType": "工程部"
+            },
+            {
+              "startDate": "\/Date(1175385600000)\/",
+              "employer": "优特半导体(上海)有限公司",
+              "startTitle": "高级工艺/设备工程师",
+              "endDate": "\/Date(1396224000000)\/",
+              "businessType": "工程部"
+            },
+            {
+              "startDate": "\/Date(1151712000000)\/",
+              "employer": "鱼满堂饭店",
+              "startTitle": "总经理",
+              "endDate": "\/Date(1175299200000)\/",
+              "businessType": "未说明"
+            },
+            {
+              "startDate": "\/Date(1104537600000)\/",
+              "employer": "安靠封装测试(上海)有限公司",
+              "startTitle": "工艺工程师",
+              "endDate": "\/Date(1151625600000)\/",
+              "businessType": "工程部"
+            },
+            {
+              "startDate": "\/Date(988675200000)\/",
+              "employer": "星科金朋(上海)有限公司",
+              "startTitle": "设备工程师",
+              "endDate": "\/Date(1104451200000)\/",
+              "businessType": "未说明"
+            },
+            {
+              "startDate": "\/Date(1470009600000)\/",
+              "employer": "威讯联合半导体(北京)有限公司",
+              "startTitle": "设备经理",
+              "endDate": "\/Date(253402214400000)\/",
+              "businessType": "工程部"
+            },
+            {
+              "startDate": "\/Date(1175385600000)\/",
+              "employer": "优特半导体(上海)有限公司",
+              "startTitle": "高级工艺/设备工程师",
+              "endDate": "\/Date(1396224000000)\/",
+              "businessType": "未说明"
+            },
+            {
+              "startDate": "\/Date(1104537600000)\/",
+              "employer": "安靠封装测试(上海)有限公司",
+              "startTitle": "工艺工程师",
+              "endDate": "\/Date(1151625600000)\/",
+              "businessType": "未说明"
+            }
+          ]
+        },
+        "education": {
+          "results": [
+            {
+              "backgroundElementId": "181",
+              "custom1": null,
+              "startDate": "\/Date(873072000000)\/",
+              "bgOrderPos": "0",
+              "custom3": null,
+              "custom4": "504",
+              "custom6": "652",
+              "endDate": "\/Date(993859200000)\/",
+              "lastModifiedDateTime": "\/Date(1522399064000+0000)\/",
+              "candidateId": "201",
+              "school": "上海理工大学",
+              "degree": "580",
+              "StillAttending": null,
+              "major": "0/660/695/412193"
+            }
+          ]
+        },
+        "jobsApplied": {
+          "results": [
+            {
+              "applicationId": "201",
+              "dateOfBirth": "\/Date(252460800000+0000)\/",
+              "Dayeesouce": "猎聘网(集团总部)",
+              "gender": "Male",
+              "jobRequisition": {
+                "joblevelmin": null,
+                "positionNumber": "80036777",
+                "joblevelmax": null,
+                "jobReqLocale": {
+                  "results": [
+                    {
+                      "jobTitle": "Prod大易测试"
+                    }
+                  ]
+                },
+                "department_obj": null,
+                "recruiter": {
+                  "results": [
+                    {
+                      "lastName": "SF",
+                      "firstName": "Admin"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "applicationId": "80933",
+              "dateOfBirth": "\/Date(297043200000+0000)\/",
+              "Dayeesouce": "襄阳越顶管理咨询有限公司-詹成龙",
+              "gender": "Male",
+              "jobRequisition": {
+                "joblevelmin": null,
+                "positionNumber": "20028898",
+                "joblevelmax": null,
+                "jobReqLocale": {
+                  "results": [
+                    {
+                      "jobTitle": "工艺高级工程师"
+                    }
+                  ]
+                },
+                "department_obj": {
+                  "externalCode": "90006174",
+                  "description": "工艺技术中心"
+                },
+                "recruiter": {
+                  "results": [
+                    {
+                      "lastName": "斯庆",
+                      "firstName": "托雅"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
