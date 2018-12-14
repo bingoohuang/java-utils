@@ -11,6 +11,8 @@ import org.joda.time.format.DateTimeParser;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DateTimes {
 
@@ -337,4 +339,42 @@ public class DateTimes {
     public static boolean isDifferentDay(DateTime a, DateTime b) {
         return !isSameDay(a, b);
     }
+
+
+    private static Pattern BIRTHDAY_PATTERN = Pattern.compile("(\\d+)\\D+(\\d+)\\D+(\\d+)");
+
+    /**
+     * 解析生日字符串。例如：2018年11月14日，2018-11-14，2018/11/4，79-11-4, 18-11-4等
+     *
+     * @param birth 生日日期字符串表示
+     * @return 生日日期，返回null表示解析失败。
+     */
+    public static DateTime parseBirthday(String birth) {
+        if (StringUtils.isEmpty(birth)) return null;
+
+        Matcher matcher = BIRTHDAY_PATTERN.matcher(birth);
+        if (!matcher.find()) return null;
+
+        try {
+            int year = Integer.parseInt(matcher.group(1));
+            int fixedYear = year < 50 ? 2000 + year : year < 100 ? 1900 + year : year;
+            int monthOfYear = Integer.parseInt(matcher.group(2));
+            int dayOfMonth = Integer.parseInt(matcher.group(3));
+            return new DateTime(fixedYear, monthOfYear, dayOfMonth, 0, 0);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
+
+
+    /**
+     * 规整化日期字符串。（例如：2018-10-23 21:47，2018/10/23 21:48:15，2018-10-23T21:48:15.235）
+     *
+     * @param dateTimeStr 需要规整的字符串。
+     * @return 解析失败，将会设置到1970年1月1日零点。
+     */
+    public static DateTime regular(String dateTimeStr) {
+        return new DateTimeRegular(dateTimeStr).regular();
+    }
+
 }
