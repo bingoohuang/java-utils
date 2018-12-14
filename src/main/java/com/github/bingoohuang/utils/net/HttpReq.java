@@ -223,8 +223,14 @@ public class HttpReq {
         }
     }
 
-    private static String readResponseBody(HttpURLConnection http, String charset) throws IOException {
+    public static String readResponseBody(HttpURLConnection http, String charset) throws IOException {
         InputStream inputStream = http.getInputStream();
+
+        return toString(charset, inputStream);
+    }
+
+    public static String readErrorBody(HttpURLConnection http, String charset) throws IOException {
+        InputStream inputStream = http.getErrorStream();
 
         return toString(charset, inputStream);
     }
@@ -241,7 +247,7 @@ public class HttpReq {
         return new String(baos.toByteArray(), charset);
     }
 
-    private static String getCharset(String contentType) {
+    public static String getCharset(String contentType) {
         if (contentType == null) return "UTF-8";
 
         String charset = null;

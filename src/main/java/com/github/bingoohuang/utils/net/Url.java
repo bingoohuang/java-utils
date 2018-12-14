@@ -1,7 +1,10 @@
 package com.github.bingoohuang.utils.net;
 
 import com.github.bingoohuang.utils.codec.Bytes;
+import com.github.bingoohuang.utils.str.Fmt;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -10,6 +13,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
 public class Url {
 
     @SneakyThrows
@@ -62,22 +66,37 @@ public class Url {
     /**
      * 从指定链接下载资源。
      *
-     * @param fileUrl 指定链接
+     * @param fileUrl  指定链接
+     * @param fileType 文件类型，比如pdf等。此文件类型必须出现在响应头Content-Type中
      * @return 下载内容
      */
     @SneakyThrows
-    public static DownloadContent download(String fileUrl) {
+    public static DownloadContent download(String fileUrl, String fileType) {
         val url = new URL(fileUrl);
-        @Cleanup("disconnect") val httpConn = (HttpURLConnection) url.openConnection();
-        val responseCode = httpConn.getResponseCode();
+        @Cleanup("disconnect") val http = (HttpURLConnection) url.openConnection();
+        val responseCode = http.getResponseCode();
+        val contentType = http.getHeaderField("Content-Type");
 
         // always check HTTP response code first
         if (responseCode != HttpURLConnection.HTTP_OK) {
-            throw new RuntimeException("No file to download. Server replied HTTP code: " + responseCode);
+            String charset = HttpReq.getCharset(contentType);
+            String body = HttpReq.readErrorBody(http, charset);
+            String msg = Fmt.format("No file to download. Server replied HTTP code: {} and body : {}", responseCode, body);
+            log.warn(msg);
+            throw new RuntimeException(msg);
         }
 
-        val fileName = parseFileName(fileUrl, httpConn);
-        val content = Bytes.toByteArray(httpConn.getInputStream());
+        // always check HTTP response code first
+        if (StringUtils.isNotEmpty(fileType) && !StringUtils.containsIgnoreCase(contentType, fileType)) {
+            String charset = HttpReq.getCharset(contentType);
+            String body = HttpReq.readResponseBody(http, charset);
+            String msg = Fmt.format("No file to download. Server replied HTTP code: {} and body : {}", responseCode, body);
+            log.warn(msg);
+            throw new RuntimeException(msg);
+        }
+
+        val fileName = parseFileName(fileUrl, http);
+        val content = Bytes.toByteArray(http.getInputStream());
         return new DownloadContent(fileName, content);
     }
 

@@ -7,16 +7,27 @@ import org.junit.Test;
 
 import java.io.File;
 
+import static com.google.common.truth.Truth.assertThat;
+
 
 public class UrlTest {
 
     @Test @SneakyThrows
     public void download() {
-        val res = Url.download("http://eas.zhaopin.com/CompanyPlatform/RedirectToReport.ashx?eid=fc10fc13ffbc4168a2e60e0155018d1e&eaid=12286145&spid=3577&type=5");
+        val res = Url.download("https://s3-us-west-2.amazonaws.com/s.cdpn.io/172905/test.pdf", "pdf");
         System.out.println(res);
 
         File file = new File(res.getFileName());
-        Files.asByteSink(file).write(res.getContent());
         file.delete();
+        Files.asByteSink(file).write(res.getContent());
+
+        assertThat(file.exists()).isTrue();
+
+        file.delete();
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void fail() {
+        Url.download("https://s3-us-west-2.amazonaws.com/s.cdpn.io/172905/123", "pdf");
     }
 }
