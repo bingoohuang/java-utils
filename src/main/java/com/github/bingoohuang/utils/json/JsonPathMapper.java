@@ -17,16 +17,14 @@ import lombok.val;
 import net.minidev.json.JSONArray;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.jooq.lambda.Seq;
 import org.objenesis.ObjenesisStd;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class JsonPathMapper {
@@ -38,8 +36,8 @@ public class JsonPathMapper {
 
     @SuppressWarnings("unchecked")
     static void initFilters() {
-        registerFilter("max", (s, args) -> s instanceof List ? ((List) s).stream().max(Comparator.naturalOrder()).orElseGet(null) : s);
-        registerFilter("min", (s, args) -> s instanceof List ? ((List) s).stream().min(Comparator.naturalOrder()).orElseGet(null) : s);
+        registerFilter("max", (s, args) -> s instanceof List ? Seq.seq((List) s).max().orElseGet(null) : s);
+        registerFilter("min", (s, args) -> s instanceof List ? Seq.seq((List) s).min().orElseGet(null) : s);
     }
 
     public static void registerFilter(String name, BiFunction<Object, List<String>, Object> func) {
@@ -172,9 +170,7 @@ public class JsonPathMapper {
         val pattern = Pattern.compile(jsonPathing.catchExpr());
 
         if (value instanceof List) {
-            return ((List) value).stream()
-                    .map(x -> processCatchExpr(jsonPathing.catchExpr(), pattern, x))
-                    .collect(Collectors.toList());
+            return Seq.seq((List) value).map(x -> processCatchExpr(jsonPathing.catchExpr(), pattern, x)).toList();
         }
 
         return processCatchExpr(jsonPathing.catchExpr(), pattern, value);
@@ -223,15 +219,15 @@ public class JsonPathMapper {
     }
 
     private Object evalJsonPath(JsonPathing jsonPathing) {
-        String[] jsonPathes = jsonPathing.value();
-        for (int i = 0; i < jsonPathes.length; ++i) {
-            jsonPathes[i] = Tmpl.eval(jsonPathes[i], variables);
+        String[] jsonPaths = jsonPathing.value();
+        for (int i = 0; i < jsonPaths.length; ++i) {
+            jsonPaths[i] = Tmpl.eval(jsonPaths[i], variables);
         }
 
-        if (jsonPathes.length == 1) {
-            return evalJsonPath(jsonPathes[0]);
-        } else if (jsonPathes.length > 1) {
-            return Arrays.stream(jsonPathes).map(x -> "" + evalJsonPath(x)).collect(Collectors.joining());
+        if (jsonPaths.length == 1) {
+            return evalJsonPath(jsonPaths[0]);
+        } else if (jsonPaths.length > 1) {
+            return Seq.of(jsonPaths).map(x -> "" + evalJsonPath(x)).toString();
         }
 
         return null;

@@ -3,12 +3,12 @@ package com.github.bingoohuang.utils.lang;
 import lombok.Data;
 import lombok.val;
 import org.joda.time.DateTime;
+import org.jooq.lambda.Seq;
 import org.junit.Test;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class ComparesTest {
@@ -50,7 +50,7 @@ public class ComparesTest {
             bean.setEnabled(r.nextBoolean());
         }
 
-        for (val bean : beanList.stream().sorted().collect(Collectors.toList())) {
+        for (val bean : Seq.seq(beanList).sorted().toList()) {
             System.out.println(bean);
         }
     }

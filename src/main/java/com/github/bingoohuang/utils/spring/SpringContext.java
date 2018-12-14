@@ -1,6 +1,7 @@
 package com.github.bingoohuang.utils.spring;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jooq.lambda.Seq;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -61,10 +62,10 @@ public abstract class SpringContext implements ApplicationContextAware {
             return beansOfType.entrySet().iterator().next().getValue();
         }
 
-        return beansOfType.entrySet().stream()
-                .filter(x -> x.getValue().getClass() == clazz)
+        return Seq.seq(beansOfType)
+                .filter(x -> x.v2.getClass() == clazz)
                 .findFirst()
-                .map(Map.Entry::getValue)
+                .map(x -> x.v2)
                 .orElseThrow(() -> new RuntimeException("unable to find bean exactly for " + clazz));
     }
 

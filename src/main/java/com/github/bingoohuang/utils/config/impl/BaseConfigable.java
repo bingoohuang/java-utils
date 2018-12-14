@@ -4,6 +4,7 @@ import com.github.bingoohuang.utils.config.Configable;
 import com.github.bingoohuang.utils.config.ex.ConfigNotFoundException;
 import com.github.bingoohuang.utils.config.ex.ConfigValueFormatException;
 import com.github.bingoohuang.utils.config.utils.AfterPropertiesSet;
+import com.github.bingoohuang.utils.lang.Str;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 
@@ -132,8 +133,7 @@ public abstract class BaseConfigable implements Configable {
     }
 
     private boolean toBool(String str) {
-        return "true".equalsIgnoreCase(str) || "yes".equalsIgnoreCase(str)
-                || "on".equalsIgnoreCase(str) || "y".equalsIgnoreCase(str);
+        return Str.anyOfIgnoreCase(str, "true", "yes", "on", "y");
     }
 
     @Override
