@@ -23,7 +23,7 @@ public class Filters {
             val func = predefinedFilters.get(spec.getName());
             if (func != null) {
                 filtered = func.apply(old, spec.getParams());
-                log.debug("user {} to filter {} with result {}", spec, old, filtered);
+                log.debug("use {} to filter {} to {}", spec, old, filtered);
                 old = filtered;
             } else {
                 log.warn("Unknown filter name @{}", spec.getName());
