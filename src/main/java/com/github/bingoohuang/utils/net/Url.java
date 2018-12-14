@@ -67,7 +67,7 @@ public class Url {
      * 从指定链接下载资源。
      *
      * @param fileUrl  指定链接
-     * @param fileType 文件类型，比如pdf等。此文件类型必须出现在响应头Content-Type中
+     * @param fileType 文件类型，比如pdf/octet等。此文件类型必须出现在响应头Content-Type中，需要根据实际情况进行验证。
      * @return 下载内容
      */
     @SneakyThrows
