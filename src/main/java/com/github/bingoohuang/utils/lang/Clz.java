@@ -96,9 +96,7 @@ public class Clz {
     public static Method getMethod(Class<? extends Object> class1, String methodName) {
         try {
             return class1.getMethod(methodName);
-        } catch (SecurityException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
+        } catch (SecurityException | NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
     }
@@ -113,8 +111,7 @@ public class Clz {
     public static Object invokeQuietly(Object target, Method m) {
         try {
             return m.invoke(target);
-        } catch (IllegalArgumentException e) {
-        } catch (IllegalAccessException e) {
+        } catch (IllegalArgumentException | IllegalAccessException e) {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
             if (e.getTargetException() instanceof RuntimeException) {

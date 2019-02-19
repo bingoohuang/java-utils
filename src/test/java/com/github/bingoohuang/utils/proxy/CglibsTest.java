@@ -31,8 +31,8 @@ public class CglibsTest {
     @Test @SneakyThrows
     public void test1() {
         val myBean = new MyBean();
-        // 将一个示例，附加上一个接口的实现。
-        OtherInterface proxied = Cglibs.proxy(myBean, (OtherInterface) myBean::doSomething);
+        // 将一个实例，附加上一个接口的实现。
+        OtherInterface proxied = Cglibs.mixin(myBean, (OtherInterface) myBean::doSomething);
         proxied.getClass().getMethod("getUser");
         assertThat(proxied.doOthers()).isEqualTo("doSomething");
     }

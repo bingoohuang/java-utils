@@ -5,6 +5,7 @@ import lombok.experimental.UtilityClass;
 import lombok.val;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.Mixin;
 
 import java.lang.reflect.Proxy;
 import java.util.HashSet;
@@ -48,7 +49,7 @@ public class Cglibs {
         return Enhancer.create(superClass, interfaces, interceptor);
     }
 
-    // proxy class like redis.clients.jedis.Jedis$$EnhancerByCGLIB$$e3d540fd/ com.sun.proxy.$Proxy4
+    // mixin class like redis.clients.jedis.Jedis$$EnhancerByCGLIB$$e3d540fd/ com.sun.mixin.$Proxy4
     public boolean isProxyClass(Class<?> targetClass) {
         val targetClassName = targetClass.getName();
 
@@ -58,19 +59,13 @@ public class Cglibs {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T proxy(Object bean, Object... otherImpls) {
+    public static <T> T mixin(Object... beans) {
         Set<Class> all = new HashSet<>();
-        all.addAll(Clz.getAllInterfaces(bean.getClass()));
-        for (val otherImpl : otherImpls) {
-            all.addAll(Clz.getAllInterfaces(otherImpl.getClass()));
+        for (val bean : beans) {
+            all.addAll(Clz.getAllInterfaces(bean.getClass()));
         }
 
-        return (T) Enhancer.create(bean.getClass(), all.toArray(new Class[0]),
-                (MethodInterceptor) (o, method, args, methodProxy) -> {
-                    val m = Clz.findMethod(method, bean);
-                    if (m.isPresent()) return m.get().invoke(args);
-
-                    return Clz.findMethod(method, otherImpls).get().invoke(args);
-                });
+        return (T) Enhancer.create(beans[0].getClass(), all.toArray(new Class[0]),
+                (MethodInterceptor) (o, method, args, methodProxy) -> Clz.findMethod(method, beans).get().invoke(args));
     }
 }
