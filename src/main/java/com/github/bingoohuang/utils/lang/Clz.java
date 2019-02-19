@@ -1,12 +1,14 @@
 package com.github.bingoohuang.utils.lang;
 
 import lombok.SneakyThrows;
+import lombok.val;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.*;
 
 public class Clz {
     public static boolean classExists(String className) {
@@ -18,7 +20,8 @@ public class Clz {
         }
     }
 
-    @SneakyThrows @SuppressWarnings("unchecked")
+    @SneakyThrows
+    @SuppressWarnings("unchecked")
     public static <T> T newInstance(String className) {
         return (T) Clz.forName(className).newInstance();
     }
@@ -122,4 +125,75 @@ public class Clz {
         return null;
     }
 
+
+    /**
+     * Retrieves all interfaces implemented by a specified interface
+     * including all recursively extended interfaces and the classes supplied
+     * int the parameter.
+     *
+     * @param child child class
+     * @return Class[] an array of interfaces that includes those specifed
+     * in childInterfaces plus all of those interfaces' super interfaces
+     */
+    public static Set<Class> getAllInterfaces(Class child) {
+        return getAllInterfaces(child.getInterfaces());
+    }
+
+    /**
+     * Retrieves all interfaces implemented by a specified interface
+     * including all recursively extended interfaces and the classes supplied
+     * int the parameter.
+     *
+     * @param childInterfaces a set of interfaces
+     * @return Class[] an array of interfaces that includes those specifed
+     * in childInterfaces plus all of those interfaces' super interfaces
+     */
+    public static Set<Class> getAllInterfaces(Class[] childInterfaces) {
+        Set<Class> all = new HashSet<>();
+
+        for (int i = 0; i < childInterfaces.length; i++) {
+            Class childInterface = childInterfaces[i];
+            if (all.contains(childInterface)) continue;
+
+            all.add(childInterface);
+            all.addAll(getAllInterfaces(childInterface.getInterfaces()));
+        }
+
+        return all;
+    }
+
+
+    public static Optional<MethodBean> findMethod(Method method, Object... objs) {
+        for (val obj : objs) {
+            val m = findClassMethod(obj.getClass(), method);
+            if (m.isPresent()) return Optional.of(new MethodBean(m.get(), obj));
+        }
+
+        return Optional.empty();
+    }
+
+    private static Optional<Method> findClassMethod(Class<?> clazz, Method method) {
+        MC:
+        for (val m : clazz.getMethods()) {
+            if (!m.getName().equals(method.getName())) {
+                continue;
+            }
+
+            if (m.getParameterCount() != method.getParameterCount()) {
+                continue;
+            }
+
+            val aTypes = m.getParameterTypes();
+            val bTypes = method.getParameterTypes();
+            for (int i = 0, ii = m.getParameterCount(); i < ii; ++i) {
+                if (aTypes[i] != bTypes[i]) {
+                    continue MC;
+                }
+            }
+
+            return Optional.of(m);
+
+        }
+        return Optional.empty();
+    }
 }
